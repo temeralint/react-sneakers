@@ -1,6 +1,6 @@
 function Overlay() {
     return (
-        <div className="overlay" style={{ display: 'block' }}>
+        <div className="overlay" style={{ display: 'none' }}>
             <div className="basket d-flex flex-column">
                 <div className="d-flex justify-between">
                     <h2 className="mb-30">Корзина</h2>
