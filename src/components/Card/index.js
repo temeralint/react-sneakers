@@ -1,10 +1,22 @@
+import { useState } from 'react';
 import styles from './Card.module.scss';
 
-function Card({name, price, path, callback}) {
+function Card({ name, price, path}) {
+    const [isAdded, setIsAdded] = useState(false)
+    const [isFavorite, setIsFavorite] = useState(false)
+
+    const handleAddClick = () => {
+        setIsAdded(!isAdded)
+    }
+
+    const handleFavoriteClick = () => {
+        setIsFavorite(!isFavorite)
+    }
+
     return (
         <div className={styles.card}>
-            <button className="btn favorite">
-                <img src="/img/heart-unliked.svg" alt="heart" />
+            <button className={isFavorite ? `${styles.btn} ${styles.favorite} ${styles.favoriteActive}` : `${styles.btn} ${styles.favorite}`} onClick={handleFavoriteClick}>
+                <img src={isFavorite ? './img/heart-liked.svg' : './img/heart-unliked.png' } alt="heart" />
             </button>
             <img width={133} height={112} src={path} alt="sneakers" />
             <p>{name}</p>
@@ -13,8 +25,8 @@ function Card({name, price, path, callback}) {
                     <span>Цена:</span>
                     <b>{price} руб.</b>
                 </div>
-                <button className="btn" onClick={callback}>
-                    <img width={11} height={11} src="/img/card-button-plus.svg" alt="card-plus" />
+                <button className={isAdded ? styles.btn : `${styles.btn} ${styles.btnActive}`} onClick={handleAddClick}>
+                    <img width={11} height={11} src={isAdded ? './img/card-button-plus.svg' : './img/checked.svg'} alt="plus" />
                 </button>
             </div>
         </div>

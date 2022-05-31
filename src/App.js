@@ -26,31 +26,36 @@ let arr = [
 ]
 
 function App() {
-  return (
-	<div className="wrapper clear">
-		<Header/>
-		<Overlay/>
+	return (
+		<div className="wrapper clear">
+			<Header />
+			<Overlay />
 
-		<div className="content p-40">
-			<div className="d-flex justify-between align-center mb-40">
-				<h2 className="">Все кроссовки</h2>
-				<div className="search">
-					<img src="/img/search.svg" alt="search" />
-					<input placeholder="Поиск" type="text" />
+			<div className="content p-40">
+				<div className="d-flex justify-between align-center mb-40">
+					<h2 className="">Все кроссовки</h2>
+					<div className="search">
+						<img src="/img/search.svg" alt="search" />
+						<input placeholder="Поиск" type="text" />
+					</div>
 				</div>
-			</div>
-			
-			<div className="sneakers_wrapper d-flex justify-between">
-				{
-					arr.map((item, index) => {
-						return <Card name={item.name} price={item.price} path={item.path} callback={() => alert(item.price)} key={index}/>
-					})
-				}
-			</div>
 
+				<div className="sneakers_wrapper d-flex justify-between">
+					{
+						arr.map((item, index) =>
+							<Card
+								name={item.name}
+								price={item.price}
+								path={item.path}
+								key={index}
+							/>
+						)
+					}
+				</div>
+
+			</div>
 		</div>
-	</div>
-  );
+	);
 }
 
 export default App;
