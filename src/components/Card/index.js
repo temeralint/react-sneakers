@@ -1,6 +1,8 @@
-function Card({name, price, path}) {
+import styles from './Card.module.scss';
+
+function Card({name, price, path, callback}) {
     return (
-        <div className="card">
+        <div className={styles.card}>
             <button className="btn favorite">
                 <img src="/img/heart-unliked.svg" alt="heart" />
             </button>
@@ -11,7 +13,7 @@ function Card({name, price, path}) {
                     <span>Цена:</span>
                     <b>{price} руб.</b>
                 </div>
-                <button className="btn">
+                <button className="btn" onClick={callback}>
                     <img width={11} height={11} src="/img/card-button-plus.svg" alt="card-plus" />
                 </button>
             </div>

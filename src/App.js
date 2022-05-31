@@ -42,8 +42,8 @@ function App() {
 			
 			<div className="sneakers_wrapper d-flex justify-between">
 				{
-					arr.map(item => {
-						return <Card name={item.name} price={item.price} path={item.path}/>
+					arr.map((item, index) => {
+						return <Card name={item.name} price={item.price} path={item.path} callback={() => alert(item.price)} key={index}/>
 					})
 				}
 			</div>
