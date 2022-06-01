@@ -1,35 +1,27 @@
+import { useState, useEffect } from 'react';
 import Card from './components/Card';
 import Header from './components/Header';
 import Overlay from './components/Overlay';
 
-let arr = [
-	{
-		name: 'Мужские Кроссовки Nike Blazer Mid Suede',
-		price: 12990,
-		path: '/img/sneakers/1.jpg'
-	},
-	{
-		name: 'Мужские Кроссовки Nike Air Max 270',
-		price: 8990,
-		path: '/img/sneakers/2.jpg'
-	},
-	{
-		name: 'Мужские Кроссовки Nike Blazer Mid Suede',
-		price: 9990,
-		path: '/img/sneakers/3.jpg'
-	},
-	{
-		name: 'Кроссовки Puma X Aka Boku Future Rider',
-		price: 11990,
-		path: '/img/sneakers/4.jpg'
-	}
-]
-
 function App() {
+	const [isCartOpened, setIsCartOpened] = useState(false)
+	const [items, setItems] = useState([])
+	const [cartItems, setCartItems] = useState([])
+
+	useEffect(() => {
+		fetch('https://6297421e8d77ad6f75fe5a64.mockapi.io/items')
+			.then(res => res.json())
+			.then(res => setItems(res))
+	}, [])
+
+	const onAddToCart = (obj) => {
+		setCartItems(prev => [...prev, obj])
+	}
+
 	return (
 		<div className="wrapper clear">
-			<Header />
-			<Overlay />
+			{isCartOpened && <Overlay items={cartItems} onClose={() => setIsCartOpened(false)}/>}
+			<Header onClickCart={() => setIsCartOpened(true)}/>
 
 			<div className="content p-40">
 				<div className="d-flex justify-between align-center mb-40">
@@ -40,14 +32,15 @@ function App() {
 					</div>
 				</div>
 
-				<div className="sneakers_wrapper d-flex justify-between">
+				<div className="sneakers_wrapper d-flex justify-between flex-wrap">
 					{
-						arr.map((item, index) =>
+						items.map((item, index) =>
 							<Card
 								name={item.name}
 								price={item.price}
 								path={item.path}
 								key={index}
+								onPlus={obj => onAddToCart(obj)}
 							/>
 						)
 					}
