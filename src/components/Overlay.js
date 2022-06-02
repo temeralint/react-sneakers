@@ -13,7 +13,9 @@ function Overlay({ onClose, items = [] }) {
                 <div className="basket_items">
                     {
                         items.map(item => {
-                            return <div className="basket_item d-flex justify-between align-center mb-20">
+                            console.log(item)
+                            return (
+                                <div className="basket_item d-flex justify-between align-center mb-20" key={item.id}>
                                     <div style={{ backgroundImage: `url(${item.path})` }} className="basket_item_img"></div>
                                     <div className="mr-10">
                                         <p className="mb-5">{item.name}</p>
@@ -23,7 +25,7 @@ function Overlay({ onClose, items = [] }) {
                                         <img src="/img/delete.svg" alt="close" />
                                     </button>
                                 </div>
-                        })
+                            )})
                     }
                 </div>
 

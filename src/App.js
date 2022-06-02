@@ -34,12 +34,13 @@ function App() {
 
 				<div className="sneakers_wrapper d-flex justify-between flex-wrap">
 					{
-						items.map((item, index) =>
+						items.map(item =>
 							<Card
+								id={item.id}
 								name={item.name}
 								price={item.price}
 								path={item.path}
-								key={index}
+								key={item.id}
 								onPlus={obj => onAddToCart(obj)}
 							/>
 						)
